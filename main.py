@@ -2,7 +2,7 @@ from tarot import CardStack
 import shelve
 
 cs = CardStack()
-cs.ask('要不要卖出创业板指？')
+cs.ask('要不要卖出A股？')
 cs.shuffle()
 cs.cut()
 res = cs.sample(3)
