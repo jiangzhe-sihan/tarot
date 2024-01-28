@@ -31,6 +31,7 @@ class CardStack:
         for i in range(78):
             self._inter.append(Card(i))
         random.shuffle(self._inter)
+        self._reverse(self._inter)
 
     @staticmethod
     def ask(question=''):
@@ -39,22 +40,27 @@ class CardStack:
         else:
             random.seed(question)
 
+    @staticmethod
+    def _reverse(li_cds):
+        sli = random.sample(li_cds, random.randint(0, len(li_cds)))
+        for c in sli:
+            c.reverse()
+
     def shuffle(self):
         for i in range(randint()):
             a = random.randint(1, 77)
             b = random.randint(a, 78)
             s1 = self._inter[:a]
+            self._reverse(s1)
             s2 = self._inter[a:b]
+            self._reverse(s2)
             s3 = self._inter[b:]
+            self._reverse(s3)
             s2.extend(s1)
             s2.extend(s3)
             self._inter = s2
-        for i in range(randint()):
             self._inter.reverse()
             random.shuffle(self._inter)
-            for j in range(78):
-                c = random.choice(self._inter)
-                c.reverse()
 
     def cut(self):
         a = random.randint(0, 77)
