@@ -2,7 +2,7 @@ from tarot import CardStack
 import shelve
 
 cs = CardStack()
-cs.ask('要不要卖出纳斯达克？')
+cs.ask('要不要买入纳斯达克？')
 cs.shuffle()
 cs.cut()
 res = cs.sample(3)
@@ -20,3 +20,6 @@ with shelve.open('./desc/zh_CN') as rec:
         print('\nfalse')
         print(t['false'])
         print()
+
+# import os
+# os.system('pause')

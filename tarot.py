@@ -63,7 +63,7 @@ class CardStack:
             random.shuffle(self._inter)
 
     def cut(self):
-        a = random.randint(0, 77)
+        a = random.randint(1, 77)
         s = self._inter[:a]
         s1 = self._inter[a:]
         b = random.randint(0, a - 1)
@@ -72,8 +72,8 @@ class CardStack:
         s1.extend(s2)
         s1.extend(s3)
         self._inter = s1
-        for c in self._inter:
-            c.reverse()
+        # for c in self._inter:
+        #     c.reverse()
 
     def sample(self, n):
         return random.sample(self._inter, n)
