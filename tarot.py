@@ -32,13 +32,14 @@ class CardStack:
             self._inter.append(Card(i))
         random.shuffle(self._inter)
         self._reverse(self._inter)
+        self._for_self = False
 
-    @staticmethod
-    def ask(question=''):
+    def ask(self, question='', for_self=False):
         if not question.strip():
             random.seed(time.time_ns())
         else:
             random.seed(question)
+        self._for_self = for_self
 
     @staticmethod
     def _reverse(li_cds):
@@ -72,8 +73,10 @@ class CardStack:
         s1.extend(s2)
         s1.extend(s3)
         self._inter = s1
-        # for c in self._inter:
-        #     c.reverse()
+        if not self._for_self:
+            return
+        for c in self._inter:
+            c.reverse()
 
     def sample(self, n):
         return random.sample(self._inter, n)
