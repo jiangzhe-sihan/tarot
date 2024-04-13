@@ -9,13 +9,14 @@ def answer_me(cs: CardStack, ques: str, n: int = 3):
     return cs.sample(n)
 
 
-def is_possible(result: list[Card]):
+def is_possible(result: list[Card], strict=True):
     cnt = 0
     for c in result:
         if c.get_direct():
             cnt += 1
-    # return cnt > len(result) // 2
-    return cnt == len(result)
+    if strict:
+        return cnt == len(result)
+    return cnt > len(result) // 2
 
 
 def req_digit(cs: CardStack, idx: str):
@@ -37,6 +38,9 @@ def req_shanghai(cs: CardStack):
             print('..\t搞错了再来！', flush=True)
             return False
     else:
+        a1 = answer_me(cs, '它的代码第二位是0吗？')
+        if not is_possible(a1):
+            return req_shanghai(cs)
         print('0', end='', flush=True)
         for i in ('三', '四', '五', '六'):
             d = req_digit(cs, i)
@@ -60,6 +64,9 @@ def req_shenzhen(cs: CardStack):
             print('..\t搞错了再来！', flush=True)
             return False
     else:
+        a1 = answer_me(cs, '它的代码第一位是0吗？')
+        if not is_possible(a1):
+            return req_shenzhen(cs)
         print('00', end='', flush=True)
         for i in ('三', '四', '五', '六'):
             d = req_digit(cs, i)
