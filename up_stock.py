@@ -2,8 +2,8 @@ from tarot import CardStack, Card
 import os
 
 
-def answer_me(cs: CardStack, ques: str, n: int = 3):
-    cs.ask(ques, True)
+def answer_me(cs: CardStack, ques: str, n: int = 3, forself=True):
+    cs.ask(ques, forself)
     cs.shuffle()
     cs.cut()
     return cs.sample(n)
