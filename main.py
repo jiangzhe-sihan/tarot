@@ -2,7 +2,7 @@ from tarot import CardStack
 import shelve
 
 cs = CardStack()
-cs.ask('要不要买入黄金？', True)
+cs.ask('今天是不是星期天？', False)
 cs.shuffle()
 cs.cut()
 res = cs.sample(3)

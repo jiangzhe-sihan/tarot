@@ -25,6 +25,14 @@ class Card:
         self._dir = not self._dir
 
 
+def parse_stack(stack: list[Card]):
+    cnt = 0
+    for i in stack:
+        if i.get_direct():
+            cnt += 1
+    return cnt > len(stack) // 2
+
+
 class CardStack:
     def __init__(self):
         self._inter = []
@@ -89,6 +97,12 @@ class CardStack:
 
     def sample(self, n):
         return random.sample(self._inter, n) if not self._stop else None
+
+    def answer(self, question, n, for_self=False):
+        self.ask(question, for_self)
+        self.shuffle()
+        self.cut()
+        return self.sample(n)
 
 
 if __name__ == '__main__':
